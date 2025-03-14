@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario con Tabla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+    <h2 class="mb-3">Formulario de Registro</h2>
+    <div class="mb-3">
+        <label class="form-label">Nombre:</label>
+        <input type="text" id="nombre" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cédula:</label>
+        <input type="text" id="cedula" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Correo:</label>
+        <input type="email" id="correo" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Dirección:</label>
+        <input type="text" id="direccion" class="form-control">
+    </div>
+    <button class="btn btn-primary" onclick="agregarFila()">Agregar +</button>
+
+    <table class="table table-bordered mt-4">
+        <thead class="table-info">
+            <tr>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla">
+        </tbody>
+    </table>
+
+    <script>
+        function agregarFila() {
+            let nombre = document.getElementById("nombre").value;
+            let cedula = document.getElementById("cedula").value;
+            let correo = document.getElementById("correo").value;
+            let direccion = document.getElementById("direccion").value;
+
+            if (nombre && cedula && correo && direccion) {
+                let tabla = document.getElementById("tabla-body");
+                let fila = document.createElement("tr");
+
+                fila.innerHTML = `
+                    <td>${nombre}</td>
+                    <td>${cedula}</td>
+                    <td>${correo}</td>
+                    <td>${direccion}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="eliminarFila(this)">Eliminar X</button></td>
+                `;
+
+                tabla.appendChild(fila);
+
+                // Limpiar los campos después de agregar la fila
+                document.getElementById("nombre").value = "";
+                document.getElementById("cedula").value = "";
+                document.getElementById("correo").value = "";
+                document.getElementById("direccion").value = "";
+            } else {
+                alert("Por favor, completa todos los campos.");
+            }
+        }
+
+        function eliminarFila(boton) {
+            boton.closest("tr").remove();
+        }
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <tbody id="tabla">
+   
+        </tbody>
+        </table>
+        
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="miscript.js"></script>
+        
+    </body>
+</html>
